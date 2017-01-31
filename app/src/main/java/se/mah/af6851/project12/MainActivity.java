@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         setFragment(lvFragment, false);
 
 
+
     }
 
     public List getSensorList() {
@@ -109,11 +110,16 @@ public class MainActivity extends Activity implements SensorEventListener {
         String value0 = String.valueOf(event.values[0]);
         String value1 = String.valueOf(event.values[1]);
         String value2 = String.valueOf(event.values[2]);
+//        String value3 = String.valueOf(event.values[3]);
+//        String value4 = String.valueOf(event.values[4]);
         String accuracy = String.valueOf(event.accuracy);
         String timestamp = String.valueOf(event.timestamp);
         String power = String.valueOf(mSensor.getPower());
+        String value3 = "temp";
+        String value4 = "temp";
+        Toast.makeText(this, ""+event.values.length, Toast.LENGTH_SHORT).show();
 
-        sensorFragment.setChangedText(value0, value1, value2, accuracy, timestamp, power);
+        sensorFragment.setChangedText(value0, value1, value2, value3, value4, accuracy, timestamp, power);
 
     }
 

@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +19,7 @@ import android.widget.Toast;
 public class SensorFragment extends Fragment {
     private TextView tvName, tvDescription, tvUses, powerTv, mEventValue_0, mEventValue_1, mEventValue_2, mAccuracy, mTime, tvType;
     private Button btnStart, btnStop;
-    private String mEventValueString_0, mEventValueString_1, mEventValueString_2, sAccuracy, sTime, sPower;
+    private String mEventValueString_0, mEventValueString_1, mEventValueString_2, mEventValueString_3, mEventValueString_4, sAccuracy, sTime, sPower;
     private String sensorName;
     private View view;
     private boolean getValues = false;
@@ -34,7 +36,7 @@ public class SensorFragment extends Fragment {
 
 
         tvName = (TextView) view.findViewById(R.id.tvName);
-//        tvType = (TextView) view.findViewById(R.id.);
+        tvType = (TextView) view.findViewById(R.id.tvType);
         tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         tvUses = (TextView) view.findViewById(R.id.tvUses);
         powerTv = (TextView) view.findViewById(R.id.powerTv);
@@ -45,6 +47,7 @@ public class SensorFragment extends Fragment {
         mTime = (TextView) view.findViewById(R.id.mTime);
         btnStart = (Button) view.findViewById(R.id.btnStart);
         tvName.setText(((MainActivity) getActivity()).getName());
+        tvType.setText("Type: "+((MainActivity) getActivity()).getType());
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,10 +69,12 @@ public class SensorFragment extends Fragment {
 
 
 
-    public void setChangedText(String SmEventValue_0, String SmEventValue_1, String SmEventValue_2, String sAccuracy, String sTime, String sPower) {
+    public void setChangedText(String SmEventValue_0, String SmEventValue_1, String SmEventValue_2, String SmEventValue_3, String SmEventValue_4, String sAccuracy, String sTime, String sPower) {
         this.mEventValueString_0 = SmEventValue_0;
         this.mEventValueString_1 = SmEventValue_1;
         this.mEventValueString_2 = SmEventValue_2;
+        this.mEventValueString_3 = SmEventValue_3;
+        this.mEventValueString_4 = SmEventValue_4;
         this.sAccuracy = sAccuracy;
         this.sTime = sTime;
         this.sPower = sPower;
@@ -85,9 +90,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Motion detection (shake, tilt, etc).");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " m/s2");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " m/s2");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " m/s2");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " m/s2");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " m/s2");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " m/s2");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -98,9 +103,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Creating a compass.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  μT");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " μT");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " μT");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + "  μT");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " μT");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " μT");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -111,9 +116,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Rotation detection (spin, turn, etc.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  rad/s");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " rad/s");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " rad/s");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + "  rad/s");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " rad/s");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " rad/s");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -124,16 +129,16 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Monitoring air pressure changes.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  hpA or mbar");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " hpA or mbar");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " hpA or mbar");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + "  hpA or mbar");
+//                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " hpA or mbar");
+//                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " hpA or mbar");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
                 mTime.setText("Time: " + sTime);
             }
         } else if (sensorName.contains("Proximity")) {
-            tvDescription.setText("Description: Measures the proximity of an object in cm relative " +
+            tvDescription.setText("-Description: Measures the proximity of an object in cm relative " +
                     "to the view screen of a device. This sensor is typically used to determine " +
                     "whether a handset is being held up to a person's ear.");
             tvUses.setText("-Comon Uses: Phone position during a call.");
@@ -151,9 +156,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Alert user a for new notifications");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  ");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " ");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " ");
+                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " lx");
+//                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " lx");
+//                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " lx");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -164,9 +169,8 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Monitoring dewpoint, absolute, and relative humidity.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " %");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " %");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " %");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " %");
+
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -179,9 +183,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Monitoring temperatures.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " °C");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " °C");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " °C");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " °C");
+//                mEventValue_1.setText("Value y: " + mEventValueString_1 + " °C");
+//                mEventValue_2.setText("Value z: " + mEventValueString_2 + " °C");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -189,9 +193,9 @@ public class SensorFragment extends Fragment {
             }
         } else if (sensorName.contains("Significant Motion")) {
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " °C");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " °C");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " °C");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " °C");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " °C");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " °C");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -204,9 +208,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Detects steps");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " step");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " step");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " step");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " step");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " step");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " step");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -217,9 +221,9 @@ public class SensorFragment extends Fragment {
                     " user takes a step. This sensor counts each step since the sensor was activated.");
             tvUses.setText("-Comon Uses: Counting step");
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " step");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " step");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " step");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " step");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " step");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " step");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -231,26 +235,39 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Rotation detection (spin, turn, etc.).");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " rad/s");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " rad/s");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " rad/s");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " rad/s");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " rad/s");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " rad/s");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
                 mTime.setText("Time: " + sTime);
             }
         } else if (sensorName.contains("Screen Orientation")) {
-            Toast.makeText(getActivity(), "Case: " + sensorName, Toast.LENGTH_SHORT).show();
-        } else if (sensorName.contains("Rotation Vector")) {
             tvDescription.setText("-Description: The rotation vector represents the orientation of" +
                     " the device as a combination of an angle and an axis, in which the device has" +
                     " rotated through an angle θ around an axis (x, y, or z).");
             tvUses.setText("-Comon Uses: Rotation detection (spin, turn, etc.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " °");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " °");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " °");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " °");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " °");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " °");
+
+                mAccuracy.setText("Accuracy: " + sAccuracy);
+                powerTv.setText("Power: " + sPower);
+                mTime.setText("Time: " + sTime);
+            }
+        } else if (sensorName.contains("Rotation Vector")) {
+            tvDescription.setText("-Description: Measures degrees of rotation that a device makes " +
+                    "around all three physical axes (x, y, z). As of API level 3 you can obtain the" +
+                    " inclination matrix and rotation matrix for a device by using the gravity sensor");
+            tvUses.setText("-Comon Uses: Determining device position");
+
+            if (getValues) {
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " °");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " °");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " °");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -262,9 +279,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Motion detection (shake, tilt, etc.).");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  m/s2");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + "  m/s2");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + "  m/s2");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + "  m/s2");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + "  m/s2");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + "  m/s2");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -276,9 +293,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Monitoring acceleration along a single axis.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + "  m/s2");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + "  m/s2");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + "  m/s2");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + "  m/s2");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + "  m/s2");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + "  m/s2");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
@@ -290,9 +307,9 @@ public class SensorFragment extends Fragment {
             tvUses.setText("-Comon Uses: Determining device position.");
 
             if (getValues) {
-                mEventValue_0.setText("Physical axe x: " + mEventValueString_0 + " °");
-                mEventValue_1.setText("Physical axe y: " + mEventValueString_1 + " °");
-                mEventValue_2.setText("Physical axe z: " + mEventValueString_2 + " °");
+                mEventValue_0.setText("Value x: " + mEventValueString_0 + " °");
+                mEventValue_1.setText("Value y: " + mEventValueString_1 + " °");
+                mEventValue_2.setText("Value z: " + mEventValueString_2 + " °");
 
                 mAccuracy.setText("Accuracy: " + sAccuracy);
                 powerTv.setText("Power: " + sPower);
