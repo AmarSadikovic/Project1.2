@@ -63,6 +63,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     public String getName() {
         return mSensor.getName();
     }
+    public String getType(){
+        return mSensor.getStringType();
+    }
 
     public void setFragment(Fragment frag, boolean backstack) {
         FragmentTransaction fs = fm.beginTransaction();

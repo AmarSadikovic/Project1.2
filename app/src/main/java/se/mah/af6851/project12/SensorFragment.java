@@ -15,7 +15,7 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class SensorFragment extends Fragment {
-    private TextView tvName, tvDescription, tvUses, powerTv, mEventValue_0, mEventValue_1, mEventValue_2, mAccuracy, mTime;
+    private TextView tvName, tvDescription, tvUses, powerTv, mEventValue_0, mEventValue_1, mEventValue_2, mAccuracy, mTime, tvType;
     private Button btnStart, btnStop;
     private String mEventValueString_0, mEventValueString_1, mEventValueString_2, sAccuracy, sTime, sPower;
     private String sensorName;
@@ -34,6 +34,7 @@ public class SensorFragment extends Fragment {
 
 
         tvName = (TextView) view.findViewById(R.id.tvName);
+//        tvType = (TextView) view.findViewById(R.id.);
         tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         tvUses = (TextView) view.findViewById(R.id.tvUses);
         powerTv = (TextView) view.findViewById(R.id.powerTv);

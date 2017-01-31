@@ -40,14 +40,15 @@
             android:text="Description:"
             android:id="@+id/tvDescription"
             android:textSize="18sp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:layout_weight="1" />
 
         <TextView
             android:text="Comon uses:"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvUses"
-            android:layout_weight="4.90"
+            android:layout_weight="1"
             android:textSize="18sp"
             android:textColor="#FFFFFF" />
     </LinearLayout>
@@ -96,7 +97,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/mTime"
                 android:textColor="#FFFFFF"
-                />
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="Type:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvType"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
