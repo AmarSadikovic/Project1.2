@@ -117,7 +117,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         String power = String.valueOf(mSensor.getPower());
         String value3 = "temp";
         String value4 = "temp";
-        Toast.makeText(this, ""+event.values.length, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, ""+event.values.length, Toast.LENGTH_SHORT).show();
 
         sensorFragment.setChangedText(value0, value1, value2, value3, value4, accuracy, timestamp, power);
 
